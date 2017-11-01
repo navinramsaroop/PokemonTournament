@@ -164,7 +164,6 @@ public class SinglePlayer implements ActionListener, KeyListener, MouseListener 
 		ArrayList<String> musicFiles = new ArrayList<>();
 		musicFiles.add(getClass().getResource("08-normal-battle.wav").getPath());
 		musicFiles.add(getClass().getResource("battleMusic1.wav").getPath());
-		musicFiles.add(getClass().getResource("battleMusic2.wav").getPath());
 
 		MusicClass mc = new MusicClass(musicFiles);
 		mc.start();
@@ -980,12 +979,6 @@ public class SinglePlayer implements ActionListener, KeyListener, MouseListener 
 					output.append(player1Name + "'s " + p1Active.getName() + " fainted! Choose another pokemon!" + newline);
 					player1Button[PLAYER1.indexOf(p1Active)].setEnabled(false);
 				}
-				if(player2_health.getValue() <= p2Active.getMax_hp() / 2 && player2_health.getValue() >= 0.2 * p2Active.getMax_hp()) {
-					player2_health.setForeground(Color.YELLOW);
-				}
-				else if(player2_health.getValue() < 0.20 * p2Active.getMax_hp()) {
-					player2_health.setForeground(Color.RED);
-				}
 				t.stop();
 			}
 		}	
@@ -993,6 +986,12 @@ public class SinglePlayer implements ActionListener, KeyListener, MouseListener 
 			if(player2_health.getValue() > p2Active.getHp()){
 				player2_health.setValue(player2_health.getValue() - 1);
 				statuslabelsP2[1].setText(player2_health.getValue()+ "/" + p2Active.getMax_hp());
+				if(player2_health.getValue() <= p2Active.getMax_hp() / 2 && player2_health.getValue() >= 0.2 * p2Active.getMax_hp()) {
+					player2_health.setForeground(Color.YELLOW);
+				}
+				else if(player2_health.getValue() < 0.20 * p2Active.getMax_hp()) {
+					player2_health.setForeground(Color.RED);
+				}
 			}
 			else {
 				if(player2_health.getValue() == 0) {
